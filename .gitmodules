@@ -1,0 +1,3 @@
+[submodule "nightly"]
+	path = nightly
+	url = https://github.com/damnitharshit/nightly
