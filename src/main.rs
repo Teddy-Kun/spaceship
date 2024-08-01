@@ -27,7 +27,7 @@ fn rocket() -> _ {
 	}
 
 	if path == "" {
-		path = String::from("nightly");
+		path = String::from(Settings::default().index);
 	}
 
 	rocket::build().mount("/", FileServer::from(path))
