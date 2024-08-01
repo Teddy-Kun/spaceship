@@ -30,3 +30,9 @@ cargo r -r -- -p "path/to/folder/"
 ```
 
 or edit the config created at `~/.config/spaceship/config.toml`
+
+A custom frontend is in the works. If you want to test it install `just` and simply run:
+
+```
+just dev
+```
