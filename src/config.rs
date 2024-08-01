@@ -37,7 +37,7 @@ impl Settings {
 		Ok(cfg)
 	}
 
-	pub fn create_file(path: PathBuf) -> Result<Self, ErrorTrace> {
+	fn create_file(path: PathBuf) -> Result<Self, ErrorTrace> {
 		let me = Settings::default();
 		let t = toml::to_string(&me)?;
 
