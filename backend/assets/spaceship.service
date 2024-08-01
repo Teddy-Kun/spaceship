@@ -1,0 +1,8 @@
+[Unit]
+Description=Spaceship Homepage
+
+[Service]
+ExecStart=/usr/bin/spaceship
+
+[Install]
+WantedBy=default.target

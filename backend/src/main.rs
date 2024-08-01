@@ -12,17 +12,28 @@ extern crate rocket;
 
 #[launch]
 fn rocket() -> _ {
-	let conf = match Settings::new() {
-		Ok(c) => c,
-		Err(e) => {
-			eprintln!("{e:?}");
-			process::exit(1);
-		}
-	};
-	let mut path = conf.index;
-	let arg = args::Args::parse();
+	let args = args::Args::parse();
 
-	if let Some(p) = arg.path {
+	let conf = match args.reset_config {
+		true => match Settings::reset() {
+			Ok(c) => c,
+			Err(e) => {
+				eprintln!("{e:?}");
+				process::exit(1);
+			}
+		},
+		false => match Settings::new() {
+			Ok(c) => c,
+			Err(e) => {
+				eprintln!("{e:?}");
+				process::exit(1);
+			}
+		},
+	};
+
+	let mut path = conf.index;
+
+	if let Some(p) = args.path {
 		path = p;
 	}
 

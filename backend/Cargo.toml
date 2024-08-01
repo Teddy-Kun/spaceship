@@ -1,0 +1,13 @@
+[package]
+name = "spaceship"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+backtrace = "0.3.73"
+clap = { version = "4.5.12", features = ["derive"] }
+config = { version = "0.14.0", features = ["toml"] }
+rocket = { version = "0.5.1", features = ["json", "secrets", "tls", "uuid"] }
+serde = { version = "1.0.204", features = ["derive"] }
+toml = "0.8.19"
+xdg = "2.5.2"

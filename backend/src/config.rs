@@ -1,6 +1,10 @@
 use config::{builder::DefaultState, ConfigBuilder, Environment, File as CfgFile, FileFormat};
 use serde::{Deserialize, Serialize};
-use std::{fs::File, io::Write, path::PathBuf};
+use std::{
+	fs::{self, File},
+	io::Write,
+	path::PathBuf,
+};
 
 use crate::err::ErrorTrace;
 
@@ -12,7 +16,7 @@ pub struct Settings {
 impl Default for Settings {
 	fn default() -> Self {
 		Settings {
-			index: String::from("nightly"),
+			index: String::from("frontend/dist/"),
 		}
 	}
 }
@@ -54,5 +58,14 @@ impl Settings {
 		}
 
 		Self::read_toml()
+	}
+
+	pub fn reset() -> Result<Self, ErrorTrace> {
+		let path = Self::get_path()?;
+		if path.is_file() {
+			fs::remove_file(&path)?;
+		}
+
+		Self::create_file(path)
 	}
 }
